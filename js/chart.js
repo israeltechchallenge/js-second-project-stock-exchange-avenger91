@@ -9,7 +9,7 @@ async function getHistoricalData() {
 
   labels = [];
   values = [];
-  for (i = 0; i < length; i += 600) {
+  for (i = 0; i < length; i += 50) {
     labels.push(data.historical[i].date);
     values.push(data.historical[i].close);
   }
@@ -33,7 +33,7 @@ async function getHistoricalData() {
           borderColor: "grey",
           borderWidth: 1,
           backgroundColor: gradient,
-          pointRadius: 2,
+          pointRadius: 1,
         },
       ],
     },

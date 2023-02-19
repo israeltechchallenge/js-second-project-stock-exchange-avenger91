@@ -22,10 +22,10 @@ async function getSearchResults(input) {
     const searchURL = `${baseURL}search?query=${input.value}&limit=10&exchange=NASDAQ`;
     const response = await fetch(searchURL);
     const data = await response.json();
-    for (const company of data) {
-      const { symbol } = company;
-      getCompanyData(symbol);
-    }
+    const companies = data.map((company) => company.symbol);
+    const companyData = await Promise.all(companies.map(getCompanyData));
+    const searchResults = companyData.filter((data) => data !== null);
+    searchResults.forEach(listSearchResult);
   } catch (error) {
     console.log(error);
   }
@@ -36,13 +36,14 @@ async function getCompanyData(symbol) {
     const getCompanyURL = baseURL + `company/profile/${symbol}`;
     const response = await fetch(getCompanyURL);
     const data = await response.json();
-    listSearchData(data);
+    return data.profile ? { ...data, symbol } : null;
   } catch (error) {
     console.log(error);
+    return null;
   }
 }
 
-function listSearchData(data) {
+function listSearchResult(data) {
   const { companyName, image, changes, changesPercentage } = data.profile;
   const symbol = data.symbol;
 
@@ -69,13 +70,12 @@ function listSearchData(data) {
   });
 }
 
-input.addEventListener(
-  "input",
-  debounce(function () {
-    searchList.innerHTML = "";
-    getSearchResults(input);
-  }, delay)
-);
+function handleInput() {
+  searchList.innerHTML = "";
+  getSearchResults(input);
+}
+
+input.addEventListener("input", debounce(handleInput, delay));
 
 button.addEventListener("click", function (event) {
   event.preventDefault();
@@ -89,4 +89,6 @@ button.addEventListener("click", function (event) {
   }, delay);
 
   getSearchResults(input);
+
+  input.removeEventListener("input", handleInput);
 });
