@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stock Exchange Project AV</title>
+    <link href="./css/style.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.png"
+    />
+  </head>
+  <body>
+    <!-- 
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Our team</a></li>
+          <li><a href="#">Projects</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+      -->
+
+    <div class="marquee">
+      <p class="marquee-text rainbow-letters"></p>
+    </div>
+
+    <main>
+      <form role="search" class="search-form">
+        <div class="search-field">
+          <div class="input-wrapper">
+            <input type="text" placeholder="Search Nasdaq Stocks" />
+            <!--add form validation-->
+            <button>
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <i class="fa-solid fa-spinner fa-spin"></i>
+            </button>
+          </div>
+          <div class="search-results-wrapper">
+            <div class="search-results"></div>
+          </div>
+        </div>
+      </form>
+    </main>
+
+    <!-- 
+   <footer>
+      <p>blah blah blah ITC Evenings; made using HTML, CSS, JS</p>
+    </footer>
+       -->
+    <script src="./js/global.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/marquee.js"></script>
+  </body>
+</html>
