@@ -1,12 +1,12 @@
 class Marquee {
-  constructor(marqueeURL, start, end) {
-    this.marqueeURL = marqueeURL;
-    this.start = start;
-    this.end = end;
+  constructor(marqueeElement) {
+    this.marqueeElement = marqueeElement;
+    this.data = [];
   }
 
-  static async fetchData(marqueeURL) {
+  async fetchData() {
     try {
+      const marqueeURL = baseURL + "stock/list";
       const response = await fetch(marqueeURL);
       const data = await response.json();
       const companies = data.map((company) => ({
@@ -14,17 +14,18 @@ class Marquee {
         price: company.price,
       }));
       const filteredData = companies.filter((data) => data !== null);
-      Marquee.data = filteredData;
+      this.data = filteredData;
     } catch (error) {
       console.log(error);
     }
   }
 
-  createMarqueeElements() {
-    const companies = Marquee.data.slice(this.start, this.end);
+  createMarqueeElements(start, end) {
     const marqueeText = document.createElement("div");
     marqueeText.classList.add("marquee-text");
     marqueeText.classList.add("rainbow-letters");
+
+    const companies = this.data.slice(start, end);
     companies.forEach((company) => {
       Object.values(company).forEach((value) => {
         const textElement = document.createElement("span");
@@ -38,24 +39,17 @@ class Marquee {
 
   async marqueeLoop() {
     const marqueeChild = document.createElement("div");
-    console.log(marqueeChild);
-    await Marquee.fetchData(this.marqueeURL);
-    for (let i = 0; i < 6; i++) {
+    await this.fetchData();
+    for (let i = 0; i < 3; i++) {
       const marqueeChildren = document.createElement("span");
-      const start = i * 20;
+      const start = i * 10;
       const end = (i + 1) * 500;
-      const marquee = new Marquee(this.marqueeURL, start, end);
-      const marqueeText = marquee.createMarqueeElements();
+      const marqueeText = this.createMarqueeElements(start, end);
       const randomPadding = Math.floor(Math.random() * 1) + 2;
       marqueeText.style.paddingLeft = `${randomPadding}px`;
-      console.log(marqueeText);
-      console.log(marqueeChild);
       marqueeChildren.append(marqueeText);
       marqueeChild.appendChild(marqueeChildren);
     }
-    marqueeElement.appendChild(marqueeChild);
+    this.marqueeElement.appendChild(marqueeChild);
   }
 }
-
-const marquee = new Marquee(marqueeURL, 0, 500);
-marquee.marqueeLoop();

@@ -2,17 +2,16 @@ const input = document.querySelector("input");
 const button = document.querySelector("button");
 const magnify = document.querySelector(".fa-magnifying-glass");
 const loadingSpinner = document.querySelector(".fa-spinner");
-const searchList = document.querySelector(".search-results");
+const searchResultsList = document.querySelector(".search-results");
 const marqueeElement = document.querySelector(".marquee");
 const companyNameElement = document.querySelector(".company-name");
 const companyPriceElement = document.querySelector(".company-price");
 const companyDescription = document.querySelector(".company-description");
 const listCompanyData = document.querySelector(".list-company-data");
-const delay = 500;
+const delay = 200;
 
 const baseURL =
   "https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/";
-const marqueeURL = baseURL + "stock/list";
 
 const getCompanyData = async (symbol) => {
   try {
@@ -93,7 +92,6 @@ const getChangesColor = (changes) => {
 
 const replaceBrokenImage = (image) => {
   image.onerror = () => {
-    image.src =
-      "https://cdn0.iconfinder.com/data/icons/money-exchange-3/106/money-currency-bank-256.png";
+    image.src = "https://cdn-icons-png.flaticon.com/512/1173/1173995.png";
   };
 };

@@ -23,26 +23,41 @@
       <div class="marquee-fade-layer"></div>
       <div class="marquee-fade"></div>
     </div>
-    <main>
-      <form role="search" class="search-form">
-        <div class="search-field">
-          <div class="input-wrapper">
-            <input type="text" placeholder="Search Nasdaq Stocks" />
-            <button>
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <i class="fa-solid fa-spinner fa-spin"></i>
-            </button>
-          </div>
-          <div class="search-results-container">
-            <div class="search-results-wrapper">
-              <div class="search-results"></div>
-            </div>
+
+    <form role="search" class="search-form">
+      <div class="search-field">
+        <div class="input-wrapper">
+          <input type="text" placeholder="Search Nasdaq Stocks" />
+          <button>
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-spinner fa-spin"></i>
+          </button>
+        </div>
+        <div class="search-results-container">
+          <div class="search-results-wrapper">
+            <div class="search-results"></div>
           </div>
         </div>
-      </form>
-    </main>
+      </div>
+    </form>
+
     <script src="./js/global.js"></script>
-    <script src="./js/index.js"></script>
+    <script src="./js/fetch.js"></script>
+    <script src="./js/results.js"></script>
     <script src="./js/marquee.js"></script>
+    <script>
+      const marquee = new Marquee(marqueeElement);
+      marquee.marqueeLoop();
+      const fetchSearch = new FetchSearchResults();
+      const getSearch = new GetSearchResults();
+
+      input.addEventListener("input", () => {
+        getSearch.handleInput(input);
+      });
+
+      button.addEventListener("click", (event) => {
+        getSearch.handleButtonClick(input, event);
+      });
+    </script>
   </body>
 </html>
