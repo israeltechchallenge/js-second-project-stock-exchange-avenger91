@@ -1,9 +1,12 @@
 class GetSearchResults {
-  constructor() {
-    this.delay = delay;
-    this.handleInput = this.debounce((input) => {
-      this.handleSearch(input.value);
-    }, this.delay);
+  constructor(input) {
+    this.input = input;
+    this.searchResults = searchResults;
+    this.button = document.querySelector("button");
+    this.magnify = document.querySelector(".fa-magnifying-glass");
+    this.loadingSpinner = document.querySelector(".fa-spinner");
+    this.delay = 200;
+    this.setupEventListeners();
   }
 
   debounce(func, delay) {
@@ -15,25 +18,40 @@ class GetSearchResults {
   }
 
   async handleSearch(input) {
-    searchResultsList.innerHTML = "";
-    loadingSpinner.style.display = "block";
-    magnify.style.display = "none";
+    this.searchResults.innerHTML = "";
+    this.loadingSpinner.style.display = "block";
+    this.magnify.style.display = "none";
 
+    const fetchSearch = new FetchSearchResults(input);
     try {
-      const searchResults = await new FetchSearchResults().fetchResults(input);
-      searchResults.forEach((data) => {
-        new FetchSearchResults().displaySearchResults(data);
+      const appendResults = await fetchSearch.fetchResults();
+      appendResults.forEach((data) => {
+        fetchSearch.displaySearchResults(data);
       });
     } catch (error) {
       console.log(error);
     }
 
-    loadingSpinner.style.display = "none";
-    magnify.style.display = "block";
+    this.loadingSpinner.style.display = "none";
+    this.magnify.style.display = "block";
   }
 
-  async handleButtonClick(input, event) {
+  async handleButtonClick(event) {
     event.preventDefault();
-    await this.handleSearch(input.value);
+    await this.handleSearch(this.input.value);
+  }
+
+  setupEventListeners() {
+    const debouncedSearch = this.debounce((input) => {
+      this.handleSearch(input);
+    }, this.delay);
+
+    this.input.addEventListener("input", (event) => {
+      debouncedSearch(event.target.value);
+    });
+
+    this.button.addEventListener("click", (event) => {
+      this.handleButtonClick(event);
+    });
   }
 }

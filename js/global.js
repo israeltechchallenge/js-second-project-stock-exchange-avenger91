@@ -1,15 +1,5 @@
 const input = document.querySelector("input");
-const button = document.querySelector("button");
-const magnify = document.querySelector(".fa-magnifying-glass");
-const loadingSpinner = document.querySelector(".fa-spinner");
-const searchResultsList = document.querySelector(".search-results");
-const marqueeElement = document.querySelector(".marquee");
-const companyNameElement = document.querySelector(".company-name");
-const companyPriceElement = document.querySelector(".company-price");
-const companyDescription = document.querySelector(".company-description");
-const listCompanyData = document.querySelector(".list-company-data");
-const delay = 200;
-
+const searchResults = document.querySelector(".search-results");
 const baseURL =
   "https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/";
 

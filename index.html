@@ -46,18 +46,9 @@
     <script src="./js/results.js"></script>
     <script src="./js/marquee.js"></script>
     <script>
-      const marquee = new Marquee(marqueeElement);
+      const marquee = new Marquee(document.querySelector(".marquee"));
       marquee.marqueeLoop();
-      const fetchSearch = new FetchSearchResults();
-      const getSearch = new GetSearchResults();
-
-      input.addEventListener("input", () => {
-        getSearch.handleInput(input);
-      });
-
-      button.addEventListener("click", (event) => {
-        getSearch.handleButtonClick(input, event);
-      });
+      const getResults = new GetSearchResults(input);
     </script>
   </body>
 </html>

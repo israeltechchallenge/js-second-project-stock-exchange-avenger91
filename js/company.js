@@ -1,3 +1,8 @@
+const companyNameElement = document.querySelector(".company-name");
+const companyPriceElement = document.querySelector(".company-price");
+const companyDescription = document.querySelector(".company-description");
+const listCompanyData = document.querySelector(".list-company-data");
+
 const getUrlParameter = (name) => {
   name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
   const regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
