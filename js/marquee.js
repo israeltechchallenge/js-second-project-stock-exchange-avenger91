@@ -23,7 +23,7 @@ class Marquee {
   createMarqueeElements(start, end) {
     const marqueeText = document.createElement("div");
     marqueeText.classList.add("marquee-text");
-    marqueeText.classList.add("rainbow-letters");
+    marqueeText.classList.add("marquee-letters");
 
     const companies = this.data.slice(start, end);
     companies.forEach((company) => {

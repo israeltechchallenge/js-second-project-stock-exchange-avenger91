@@ -15,7 +15,6 @@ const stockHistoryURL =
 async function getHistoricalData() {
   const response = await fetch(stockHistoryURL);
   const data = await response.json();
-  console.log(data);
   length = data.historical.length;
 
   labels = [];

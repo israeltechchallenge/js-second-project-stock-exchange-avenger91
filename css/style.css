@@ -306,41 +306,13 @@ img {
 
 @keyframes marquee {
   0% {
-    transform: translateX(0); /* start the animation from 0 */
+    transform: translateX(0);
   }
   100% {
-    transform: translateX(-350vw); /* move the text to the left */
+    transform: translateX(-350vw);
   }
 }
 
-.rainbow-letters span:nth-child(8n + 1) {
-  color: #9544e6;
-}
-
-.rainbow-letters span:nth-child(8n + 2) {
-  color: #9544e6;
-}
-
-.rainbow-letters span:nth-child(8n + 3) {
-  color: #9544e6;
-}
-
-.rainbow-letters span:nth-child(8n + 4) {
-  color: #9544e6;
-}
-
-.rainbow-letters span:nth-child(8n + 5) {
-  color: #9544e6;
-}
-
-.rainbow-letters span:nth-child(8n + 6) {
-  color: #9544e6;
-}
-
-.rainbow-letters span:nth-child(8n + 7) {
-  color: #9544e6;
-}
-
-.rainbow-letters span:nth-child(8n + 8) {
+.marquee-letters {
   color: #9544e6;
 }

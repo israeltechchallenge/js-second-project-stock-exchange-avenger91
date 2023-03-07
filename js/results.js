@@ -6,7 +6,6 @@ class GetSearchResults {
     this.magnify = document.querySelector(".fa-magnifying-glass");
     this.loadingSpinner = document.querySelector(".fa-spinner");
     this.delay = 200;
-    this.setupEventListeners();
   }
 
   debounce(func, delay) {
